@@ -1,0 +1,102 @@
+/* body {
+    background-image: linear-gradient(
+        to bottom,
+        rgb(101, 155, 218),
+        rgb(68, 212, 179)
+    );
+} */
+.navbar {
+    background-color: #00bfff;
+}
+
+.my-icon {
+    color: rgba(28, 78, 243, 0.852);
+    font-size: 30px;
+    margin-top: 10px;
+}
+.my-icon:hover {
+    color: #ffa500;
+}
+
+.navBar {
+    margin-left: 5rem;
+}
+
+/* .navBar a {
+    color: white;
+    font-size: 35px;
+    transition: 0.2s ease-in;
+}
+.navBar a:hover {
+    color: #ffa500;
+} */
+
+/* .nav-item a {
+    transition: 0.2s ease-in;
+    color: white;
+}
+.nav-item a:hover {
+    color: #ffa500;
+} */
+/* .btn {
+    color: white;
+    transition: 0.2s ease-in;
+}
+.btn:hover {
+    background-color: #ffa500;
+} */
+/* .text-white {
+    color: white;
+}
+.text-white::placeholder {
+    color: white;
+} */
+.login a {
+    color: whitesmoke;
+    text-decoration: none;
+    transition: 0.2s ease-in;
+    font-size: 16px;
+    /* margin-top: 2rem; */
+    /* margin-left: 20px; */
+}
+.login a:hover {
+    color: rgb(255, 0, 13);
+}
+.fa {
+    color: white;
+}
+.product-search {
+    background-image:
+        linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+        url("images/bg.jpg");
+}
+.carousel-img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .carousel-img {
+        height: 300px;
+    }
+}
+#sidebar {
+  height: 100vh;
+  overflow-y: auto;  
+  padding: 0;
+  margin: 0;  
+  /* content များရင် scroll ဖြစ်မယ် */
+}
+.sidebar-custom{
+    background-color: rgb(5, 5, 71);
+}
+/* Add this AFTER the .btn rule, so it wins */
+#themeToggle {
+    color: var(--bs-body-color) !important;
+}
+
+#themeToggle:hover {
+    background-color: var(--bs-secondary-bg) !important;
+    color: var(--bs-body-color) !important;
+}
