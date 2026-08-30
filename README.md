@@ -23,7 +23,7 @@ Laravel based Online Shopping System with Admin Panel.
 
 - Laravel 13
 - MySQL
-- Bootstrap 5
+- Bootstrap 5.3.8
 - Font Awesome
 
 ## Installation
