@@ -27,18 +27,8 @@ Laravel based Online Shopping System with Admin Panel.
 - Font Awesome
 
 ## Installation
-npm install sweetalert2 //
-import './bootstrap'; //
 
-// SweetAlert2 //
-import Swal from 'sweetalert2'; //
-window.Swal = Swal;   // global use
 
-//resources/css/app.css //
-@import 'sweetalert2/dist/sweetalert2.min.css';
-
-//resources/js/app.js //
-import 'sweetalert2/dist/sweetalert2.min.css';
 
 1. Clone the repository
 ```bash
@@ -72,9 +62,11 @@ php artisan storage:link
 7.Start the server
 php artisan serve
 
-Queue Setup (for Notifications)
+8.Queue Setup (for Notifications)
 Notifications are queued for better performance.
 
 php artisan queue:table
 php artisan migrate
 php artisan queue:work
+9.Delete form
+npm install sweetalert2 
