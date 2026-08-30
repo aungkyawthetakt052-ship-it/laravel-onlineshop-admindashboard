@@ -60,6 +60,7 @@ php artisan migrate
 php artisan storage:link
 
 7.Start the server
+
 php artisan serve
 
 8.Queue Setup (for Notifications)
@@ -68,5 +69,7 @@ Notifications are queued for better performance.
 php artisan queue:table
 php artisan migrate
 php artisan queue:work
+
 9.Delete form
+
 npm install sweetalert2 
