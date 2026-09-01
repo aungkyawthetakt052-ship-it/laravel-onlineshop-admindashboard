@@ -3,7 +3,7 @@
 
 
 
-<!-- for Onlineshp Admin Dashboard -->
+<!-- for Onlineshp Admin Dashboard manually -->
 # Onlineshop
 
 Laravel based Online Shopping System with Admin Panel.
@@ -47,7 +47,7 @@ php artisan key:generate
 
 4.Configure database in .env
 
-envDB_DATABASE=onlineshop
+envDB_DATABASE=ecommerce_db
 DB_USERNAME=root
 DB_PASSWORD=
 
