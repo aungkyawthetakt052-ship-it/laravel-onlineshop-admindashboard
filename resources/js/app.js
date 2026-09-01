@@ -1,5 +1,9 @@
-import 'bootstrap';
+import * as bootstrap from 'bootstrap';
 import Swal from 'sweetalert2';
+
+// global မှာ bootstrap ရအောင် လုပ်ပေးလိုက်ပါ
+window.bootstrap = bootstrap;
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -103,6 +107,18 @@ document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('resize', () => {
             moveIndicator(navList.querySelector('.nav-link.is-active'));
         });
+    }
+    // Mobile sidebar close button အတွက်
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+        const closeBtn = sidebar.querySelector('[data-bs-dismiss="offcanvas"]');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+                const offcanvasInstance = bootstrap.Offcanvas.getInstance(sidebar)
+                    || new bootstrap.Offcanvas(sidebar);
+                offcanvasInstance.hide();
+            });
+        }
     }
 
 });

@@ -21,7 +21,6 @@
                     @csrf
                     @method('PATCH')
 
-                    {{-- Name --}}
                     <div class="mb-4">
                         <label for="name" class="form-label fw-medium">Product Name <span
                                 class="text-danger">*</span></label>
@@ -33,17 +32,15 @@
                         @enderror
                     </div>
 
-                    {{-- Price --}}
                     <div class="mb-3">
                         <label class="form-label">Price</label>
                         <div class="input-group">
-                            <span class="input-group-text">Ks</span>
+                            <span class="input-group-text">Baht</span>
                             <input type="number" name="price" class="form-control"
                                 value="{{ old('price', $product->price) }}" step="0.01" min="0" required>
                         </div>
                     </div>
 
-                    {{-- Current Photo --}}
                     <div class="mb-4">
                         <label class="form-label fw-medium">Product Image</label>
 
@@ -83,7 +80,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')
@@ -100,8 +96,23 @@
             background-color: rgba(13, 110, 253, 0.05);
         }
 
-        .form-control {
-            border-radius: 10px;
+        /* ===== No blue focus border ===== */
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #ced4da !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        .form-control.is-invalid:focus {
+            border-color: #dc3545 !important;
+            box-shadow: none !important;
+        }
+
+        [data-bs-theme="dark"] .form-control:focus,
+        [data-bs-theme="dark"] .form-select:focus {
+            border-color: #495057 !important;
+            box-shadow: none !important;
         }
     </style>
 

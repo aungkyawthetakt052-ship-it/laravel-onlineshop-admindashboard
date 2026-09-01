@@ -23,18 +23,35 @@
   @endif
 
   {{--===== Header + Search + Filter =====--}}
-  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+
+    <!-- Title -->
     <div>
       <h4 class="mb-1 fw-semibold">Order Management</h4>
       <p class="text-muted small mb-0">Manage all customer orders</p>
     </div>
 
-    <div class="d-flex gap-2 flex-wrap">
-      <form action="{{ route('admin.orderpage') }}" method="GET" class="d-flex gap-2 flex-wrap">
-        <input type="text" name="search" class="form-control" placeholder="Search customer/product..."
-          value="{{ request('search') }}" style="width: 220px;">
+    <!-- Search + Filter + Add Button -->
+    <div class="d-flex gap-2 ms-auto flex-wrap align-items-center">
 
-        <select name="status" class="form-select" style="width: 160px;" onchange="this.form.submit()">
+      <form action="{{ route('admin.orderpage') }}" method="GET" class="d-flex gap-2 flex-wrap align-items-center">
+
+        <!-- Search Box (ပိုကျယ်ထား) -->
+        <div class="input-group shadow-sm rounded-pill overflow-hidden border" style="width: 340px;">
+          <span class="input-group-text bg-transparent border-0 ps-3">
+            <i class="fa-solid fa-magnifying-glass text-muted"></i>
+          </span>
+
+          <input type="text" name="search" class="form-control border-0 shadow-none"
+            placeholder="Search customer/product..." value="{{ request('search') }}" style="background: transparent;">
+
+          <button type="submit" class="btn btn-primary px-3 rounded-0">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+
+        <!-- Status Filter -->
+        <select name="status" class="form-select rounded-pill" style="width: 160px;" onchange="this.form.submit()">
           <option value="">All Status</option>
           <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
           <option value="processing" {{ request('status') == 'processing' ? 'selected' : '' }}>Processing</option>
@@ -42,22 +59,22 @@
           <option value="cancelled" {{ request('status') == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
         </select>
 
-        <button type="submit" class="btn btn-primary">
-          <i class="fa fa-search"></i>
-        </button>
-
+        <!-- Clear Button -->
         @if(request('search') || request('status'))
-          <a href="{{ route('admin.orderpage') }}" class="btn btn-outline-secondary" title="Clear">
+          <a href="{{ route('admin.orderpage') }}" class="btn btn-outline-secondary rounded-pill" title="Clear">
             <i class="fa-solid fa-xmark"></i>
           </a>
         @endif
       </form>
 
-      <a href="{{ route('admin.ordercreatepage') }}" class="btn btn-primary">
+      <!-- Add Order Button -->
+      <a href="{{ route('admin.ordercreatepage') }}" class="btn btn-primary text-nowrap d-flex align-items-center">
         <i class="fa-solid fa-plus me-1"></i> Add Order
       </a>
+
     </div>
   </div>
+  {{--===== End Header + Search + Filter =====--}}
 
   {{--===== Summary Cards (Optimized) =====--}}
   <div class="row g-3 mb-4">
@@ -205,5 +222,19 @@
       </div>
     @endif
   </div>
+
+@endsection
+@section('scripts')
+  <style>
+    /* Beautiful Search Box */
+    /* Mobile မှာ full width */
+    @media (max-width: 575.98px) {
+      .input-group {
+        width: 100% !important;
+      }
+    }
+
+    /*End Beautiful Search Box */
+  </style>
 
 @endsection

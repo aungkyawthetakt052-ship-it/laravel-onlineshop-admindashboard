@@ -1,6 +1,6 @@
 @extends('welcome')
 
-@section('title', 'Edit')
+@section('title', 'Edit Profile')
 
 @section('content')
 
@@ -28,14 +28,14 @@
         <p class="text-muted mb-4">{{ $user->status ?? 'No status set' }}</p>
       </div>
 
-      <div class="card shadow-sm">
+      <div class="card shadow-sm border-0">
         <div class="card-body p-4">
 
           <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
 
-            <!-- Hidden file input, triggered by the camera icon on the avatar -->
+            <!-- Hidden file input -->
             <input type="file" name="photo" id="photoInput" accept="image/*" class="d-none">
             @error('photo')
               <div class="text-danger small mb-3">{{ $message }}</div>
@@ -56,7 +56,8 @@
             <!-- Name -->
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
-              <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
+              <input type="text" name="name" id="name"
+                class="form-control @error('name') is-invalid @enderror"
                 value="{{ old('name', $user->name) }}" required>
               @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -82,26 +83,27 @@
             <div class="mb-3">
               <label for="password" class="form-label">New Password</label>
               <input type="password" name="password" id="password"
-                class="form-control @error('password') is-invalid @enderror">
+                class="form-control @error('password') is-invalid @enderror"
+                placeholder="Enter new password">
               @error('password')
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
             </div>
 
-            <!-- Confirm Password  -->
-            <div class="mb-4"> 
+            <!-- Confirm Password -->
+            <div class="mb-4">
               <label for="password_confirmation" class="form-label">Confirm New Password</label>
-              <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
+              <input type="password" name="password_confirmation" id="password_confirmation"
+                class="form-control" placeholder="Confirm new password">
             </div>
 
             <div class="d-flex justify-content-end">
-              <button type="submit" class="btn btn-primary rounded-2">
+              <button type="submit" class="btn btn-primary">
                 <i class="fa-solid fa-floppy-disk me-1"></i> Save Changes
               </button>
             </div>
 
           </form>
-
         </div>
       </div>
     </div>
@@ -154,10 +156,26 @@
     .avatar-edit-btn:hover {
       background-color: #0d6efd;
     }
+
+    /* ===== အပြာရောင် Focus Border ဖယ် ===== */
+    .form-control:focus {
+      border-color: #ced4da !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    .form-control.is-invalid:focus {
+      border-color: #dc3545 !important;
+      box-shadow: none !important;
+    }
+
+    [data-bs-theme="dark"] .form-control:focus {
+      border-color: #495057 !important;
+      box-shadow: none !important;
+    }
   </style>
 
   <script>
-    // camera icon နှိပ်ရင် hidden file input ကို trigger လုပ်မယ်
     document.getElementById('photoInput').addEventListener('change', function (e) {
       const file = e.target.files[0];
       if (file) {

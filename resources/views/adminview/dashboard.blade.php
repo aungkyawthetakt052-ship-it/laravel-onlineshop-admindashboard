@@ -163,8 +163,7 @@
     <div class="offcanvas-md offcanvas-start bg-body-tertiary" tabindex="-1" id="sidebar" style="width: 260px;">
       <div class="offcanvas-header d-md-none">
         <h5 class="offcanvas-title">Admin Menu</h5>
-        <button type="button" class="btn-close btn-close-white d-md-none" data-bs-dismiss="offcanvas"
-          aria-label="Close"></button>
+        <button type="button" class="btn-close d-md-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body pt-3">
         <ul class="nav flex-column gap-1">

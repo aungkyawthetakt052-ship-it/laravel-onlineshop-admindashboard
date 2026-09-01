@@ -23,34 +23,48 @@
   @endif
 
   {{--========= Header + Search =======--}}
-  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+
+    <!-- Title -->
     <div>
       <h4 class="mb-1 fw-semibold">User Management</h4>
       <p class="text-muted small mb-0">Manage all users and their roles</p>
     </div>
 
-    <div class="d-flex gap-2 flex-wrap">
-      <form action="{{ route('users') }}" method="GET" class="d-flex">
-        <div class="input-group" style="max-width: 320px;">
-          <input type="text" name="search" class="form-control" placeholder="Search name or email..."
-            value="{{ request('search') }}">
-          <button type="submit" class="btn btn-primary">
-            <i class="fa fa-search"></i>
-          </button>
+    <!-- Search + Create Button (ညာဘက်) -->
+    <div class="d-flex gap-2 ms-auto flex-wrap">
+
+      <!-- Beautiful Search Box -->
+      <form action="{{ route('users') }}" method="GET">
+        <div class="input-group shadow-sm rounded-pill overflow-hidden border" style="width: 280px;">
+
+          <span class="input-group-text bg-transparent border-0 ps-3">
+            <i class="fa-solid fa-magnifying-glass text-muted"></i>
+          </span>
+
+          <input type="text" name="search" class="form-control border-0 shadow-none" placeholder="Search name or email..."
+            value="{{ request('search') }}" style="background: transparent;">
+
           @if(request('search'))
-            <a href="{{ route('users') }}" class="btn btn-outline-secondary" title="Clear">
+            <a href="{{ route('users') }}" class="btn btn-link text-danger px-2" title="Clear">
               <i class="fa-solid fa-xmark"></i>
             </a>
           @endif
+
+          <button type="submit" class="btn btn-primary px-3 rounded-0">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
       </form>
 
-      <a href="{{ route('createpage') }}" class="btn btn-primary">
+      <!-- Create User Button -->
+      <a href="{{ route('createpage') }}" class="btn btn-primary text-nowrap d-flex align-items-center">
         <i class="fa-solid fa-plus me-1"></i> Create User
       </a>
+
     </div>
   </div>
-  {{--=========End Header + Search =======--}}
+  {{--========= End Header + Search =======--}}
 
 
   {{--======== Users Table =========--}}
@@ -273,5 +287,28 @@
       background-color: #f8f9fa !important;
       color: #6c757d !important;
     }
+
+    /* Beautiful Search Box */
+    /* .input-group.rounded-pill {
+      transition: box-shadow 0.2s ease;
+    }
+
+    .input-group.rounded-pill:focus-within {
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15) !important;
+      border-color: #86b7fe !important;
+    }
+
+    .input-group .form-control:focus {
+      box-shadow: none !important;
+      background: transparent !important;
+    } */
+
+    /* Mobile မှာ full width */
+    @media (max-width: 575.98px) {
+      .input-group {
+        width: 100% !important;
+      }
+    }
+    /* End searchbox */
   </style>
 @endsection

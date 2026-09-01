@@ -19,6 +19,7 @@
       <div class="card-body p-4">
         <form action="{{ route('admin.productcreate') }}" method="POST" enctype="multipart/form-data">
           @csrf
+
           {{-- Product Name --}}
           <div class="mb-4">
             <label for="name" class="form-label fw-medium">Product Name <span class="text-danger">*</span></label>
@@ -44,7 +45,6 @@
           <div class="mb-4">
             <label class="form-label fw-medium">Product Image <span class="text-danger">*</span></label>
 
-            {{-- Upload Box (ပုံမရွေးခင် ပြ) --}}
             <div class="upload-box text-center p-4 rounded-3" id="uploadBox">
               <i class="fa-solid fa-cloud-arrow-up fa-2x text-muted mb-2"></i>
               <p class="mb-1 text-muted small">Click to upload image</p>
@@ -52,16 +52,14 @@
               <input type="file" name="photoupload" id="photoupload" accept="image/*" class="d-none">
             </div>
 
-            {{-- Preview Box (ပုံရွေးပြီးမှ ပြ) --}}
             <div id="imagePreviewWrap" class="d-none">
               <div class="preview-card position-relative rounded-3 overflow-hidden">
                 <img id="imagePreview" src="" alt="Preview" class="preview-img">
-
                 <div class="preview-overlay">
-                  <button type="button" class="btn btn-sm btn-light me-2" id="changeImageBtn" title="Change image">
+                  <button type="button" class="btn btn-sm btn-light me-2" id="changeImageBtn">
                     <i class="fa-solid fa-camera"></i>
                   </button>
-                  <button type="button" class="btn btn-sm btn-danger" id="removeImageBtn" title="Remove image">
+                  <button type="button" class="btn btn-sm btn-danger" id="removeImageBtn">
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </div>
@@ -84,7 +82,6 @@
       </div>
     </div>
   </div>
-
 @endsection
 
 @section('scripts')
@@ -101,7 +98,6 @@
       background-color: rgba(13, 110, 253, 0.06);
     }
 
-    /* Preview card */
     .preview-card {
       width: 100%;
       max-width: 320px;
@@ -132,6 +128,25 @@
     .preview-card:hover .preview-overlay {
       opacity: 1;
     }
+
+    /* ===== No blue focus border ===== */
+    .form-control:focus,
+    .form-select:focus {
+      border-color: #ced4da !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    .form-control.is-invalid:focus {
+      border-color: #dc3545 !important;
+      box-shadow: none !important;
+    }
+
+    [data-bs-theme="dark"] .form-control:focus,
+    [data-bs-theme="dark"] .form-select:focus {
+      border-color: #495057 !important;
+      box-shadow: none !important;
+    }
   </style>
 
   <script>
@@ -160,15 +175,15 @@
         uploadBox.classList.remove('d-none');
       }
 
-      uploadBox.addEventListener('click', () => fileInput.click());
-      changeBtn.addEventListener('click', () => fileInput.click());
-      removeBtn.addEventListener('click', clearPreview);
+      if (uploadBox) uploadBox.addEventListener('click', () => fileInput.click());
+      if (changeBtn) changeBtn.addEventListener('click', () => fileInput.click());
+      if (removeBtn) removeBtn.addEventListener('click', clearPreview);
 
-      fileInput.addEventListener('change', function () {
-        if (this.files[0]) {
-          showPreview(this.files[0]);
-        }
-      });
+      if (fileInput) {
+        fileInput.addEventListener('change', function () {
+          if (this.files[0]) showPreview(this.files[0]);
+        });
+      }
     });
   </script>
 @endsection

@@ -24,31 +24,45 @@
   {{--===== End Success Alert ======--}}
 
   {{--===== Header + Search =====--}}
-  <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+
+    <!-- Title (ဘယ်ဘက်) -->
     <div>
       <h4 class="mb-1 fw-semibold">Product Management</h4>
       <p class="text-muted small mb-0">Manage all products in your store</p>
     </div>
 
-    <div class="d-flex gap-2 flex-wrap">
-      <form action="{{ route('admin.productpage') }}" method="GET" class="d-flex">
-        <div class="input-group" style="max-width: 320px;">
-          <input type="text" name="search" class="form-control" placeholder="Search product name..."
-            value="{{ request('search') }}">
-          <button type="submit" class="btn btn-primary">
-            <i class="fa fa-search"></i>
-          </button>
+    <!-- Search + Add Button (ညာဘက်ကို တွန်းထား) -->
+    <div class="d-flex gap-2 ms-auto"> <!-- ← ms-auto က ညာဘက်ကို တွန်းပေးတယ် -->
+
+      <!-- Search Box -->
+      <form action="{{ route('admin.productpage') }}" method="GET">
+        <div class="input-group shadow-sm rounded-pill overflow-hidden border" style="width: 280px;">
+
+          <span class="input-group-text bg-transparent border-0 ps-3">
+            <i class="fa-solid fa-magnifying-glass text-muted"></i>
+          </span>
+
+          <input type="text" name="search" class="form-control border-0 shadow-none" placeholder="Search product..."
+            value="{{ request('search') }}" style="background: transparent;">
+
           @if(request('search'))
-            <a href="{{ route('admin.productpage') }}" class="btn btn-outline-secondary" title="Clear">
+            <a href="{{ route('admin.productpage') }}" class="btn btn-link text-danger px-2" title="Clear">
               <i class="fa-solid fa-xmark"></i>
             </a>
           @endif
+
+          <button type="submit" class="btn btn-primary px-3 rounded-0">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
       </form>
 
-      <a href="{{ route('admin.productcreatepage') }}" class="btn btn-primary">
+      <!-- Add Product Button -->
+      <a href="{{ route('admin.productcreatepage') }}" class="btn btn-primary text-nowrap d-flex align-items-center">
         <i class="fa-solid fa-plus me-1"></i> Add Product
       </a>
+
     </div>
   </div>
   {{--===== End Header + Search =====--}}
@@ -197,6 +211,16 @@
       background-color: #dc3545;
       border-color: #dc3545;
       color: #fff;
+    }
+
+    /* ===== Beautiful Search Box ===== */
+    /*  */
+
+    /* Mobile မှာ full width */
+    @media (max-width: 575.98px) {
+      .input-group {
+        max-width: 100% !important;
+      }
     }
   </style>
 

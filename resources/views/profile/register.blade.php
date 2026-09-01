@@ -4,8 +4,8 @@
 
 @section('content')
   <div class="container">
-    <form class="col-md-5 col-lg-4 mx-auto mt-5 p-4 card shadow-sm login-card" action="{{ route('register.store') }}"
-      method="post">
+    <form class="col-md-5 col-lg-4 mx-auto mt-5 p-4 card shadow-sm border-0 login-card"
+      action="{{ route('register.store') }}" method="post">
       @csrf
 
       <h2 class="text-center mb-4">Register</h2>
@@ -18,7 +18,6 @@
         @error('name')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
-        <div class="form-text">We'll never share your name with anyone else.</div>
       </div>
 
       {{-- Email --}}
@@ -29,7 +28,6 @@
         @error('email')
           <div class="invalid-feedback">{{ $message }}</div>
         @enderror
-        <div class="form-text">We'll never share your email with anyone else.</div>
       </div>
 
       {{-- Password --}}
@@ -50,12 +48,6 @@
         @enderror
       </div>
 
-      {{-- Checkbox --}}
-      <div class="mb-3 form-check">
-        <input type="checkbox" name="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
-
       <button type="submit" class="btn btn-primary w-100 mb-3">Register</button>
     </form>
 
@@ -69,7 +61,6 @@
 
 @section('scripts')
   <style>
-    /* Theme-aware card (dark/light mode နဲ့ ကိုက်ညီအောင်) */
     .login-card {
       background-color: var(--bs-body-bg);
       border: 1px solid var(--bs-border-color);
@@ -92,25 +83,48 @@
     #togglePassword:hover i {
       color: var(--bs-body-color);
     }
+
+    /* ===== No blue focus border ===== */
+    .form-control:focus {
+      border-color: #ced4da !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    .form-control.is-invalid:focus {
+      border-color: #dc3545 !important;
+      box-shadow: none !important;
+    }
+
+    [data-bs-theme="dark"] .form-control:focus {
+      border-color: #495057 !important;
+      box-shadow: none !important;
+    }
+
+    input[type="password"]::-ms-reveal,
+    input[type="password"]::-ms-clear {
+      display: none !important;
+    }
   </style>
 
   <script>
-    const passwordInput = document.getElementById('password');
-    const togglePassword = document.getElementById('togglePassword');
-    const eyeIcon = document.getElementById('eyeIcon');
+    document.addEventListener('DOMContentLoaded', function () {
+      const passwordInput = document.getElementById('password');
+      const togglePassword = document.getElementById('togglePassword');
+      const eyeIcon = document.getElementById('eyeIcon');
 
-    // Password ရိုက်ရင် eye icon ပေါ်အောင်
-    passwordInput.addEventListener('input', function () {
-      togglePassword.style.display = this.value.length > 0 ? 'block' : 'none';
-    });
+      if (passwordInput && togglePassword && eyeIcon) {
+        passwordInput.addEventListener('input', function () {
+          togglePassword.style.display = this.value.length > 0 ? 'block' : 'none';
+        });
 
-    // Show / Hide password
-    togglePassword.addEventListener('click', function () {
-      const isPassword = passwordInput.type === 'password';
-      passwordInput.type = isPassword ? 'text' : 'password';
-
-      eyeIcon.classList.toggle('fa-eye', !isPassword);
-      eyeIcon.classList.toggle('fa-eye-slash', isPassword);
+        togglePassword.addEventListener('click', function () {
+          const isPassword = passwordInput.type === 'password';
+          passwordInput.type = isPassword ? 'text' : 'password';
+          eyeIcon.classList.toggle('fa-eye', !isPassword);
+          eyeIcon.classList.toggle('fa-eye-slash', isPassword);
+        });
+      }
     });
   </script>
 @endsection
